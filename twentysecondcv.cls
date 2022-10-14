@@ -109,14 +109,15 @@
 \pgfmathsetlength{\imagewidth}{5cm}%
 \pgfmathsetlength{\imagescale}{\imagewidth/600}%
 
-\newcommand{\profilesection}[2]{{\noindent\color{black!80} \huge #1 \rule[0.15\baselineskip]{#2}{1pt} \vspace{-5pt}}}
+\newcommand{\profilesection}[2]{{\noindent\color{black!80} \huge #1
+\ifthenelse{\equal{#2}{0.0cm}}{}{\rule[0.15\baselineskip]{#2}{1pt}}}}
 
 \newcommand{\cvdate}[1]{\renewcommand{\givencvdate}{#1}}                % date
 \newcommand{\cvmail}[1]{\renewcommand{\givencvmail}{#1}}                % mail
 \newcommand{\cvnumberphone}[1]{\renewcommand{\givennumberphone}{#1}}    % phone
 \newcommand{\cvaddress}[1]{\renewcommand{\givencvaddress}{#1}}          % address
 \newcommand{\cvsite}[1]{\renewcommand{\givencvsite}{#1}}                % site
-\newcommand{\aboutme}[1]{\renewcommand{\givenaboutme}{  \justifying#1}} % about me
+\newcommand{\aboutme}[1]{\renewcommand{\givenaboutme}{\vspace{-0.8em}\newline\justifying #1\\[-.5em]}} % about me
 \newcommand{\profilepic}[1]{\renewcommand{\givenprofilepic}{#1}}        % picture
 \newcommand{\cvname}[1]{\renewcommand{\givencvname}{#1}}                % name
 \newcommand{\cvfirstname}[1]{\renewcommand{\givencvfirstname}{#1}}      % first name
@@ -147,6 +148,8 @@
 % skill bar graphs
 \newcommand\skills[1]{
   \renewcommand{\givenskill}{
+    \profilesection{Softwarekenntnisse}{0.0cm}
+    \vspace{-1em}\newline
     \noindent
     \begin{tikzpicture}
     \foreach [count=\i] \x/\y in {#1}
@@ -165,13 +168,14 @@
       }
     }
     \end{tikzpicture}
+    ~\\[-1.5em]
   }
 }
+\newcommand{\givenskill}{}
 
 % text style skills
-\newcommand{\givenskill}{}
-  \newcommand\skillstext[1]{
-    \renewcommand{\giventextskill}{
+\newcommand\skillstext[1]{
+  \renewcommand{\giventextskill}{
     \begin{flushleft}
     \noindent
     \foreach [count=\i] \x/\y in {#1}
@@ -184,7 +188,6 @@
   \scriptsize
   \noindent
   (*)[The skill scale is from 0 (Fundamental Awareness) to 6 (Expert).]
-      
 }
 
 \newcommand{\giventextskill}{}
@@ -192,7 +195,8 @@
 % language skills
 \newcommand\languages[1]{ 
 	\renewcommand{\givenlanguage}{
-		\profilesection{Languages}{2.7cm}
+		\profilesection{Sprachen}{3.1cm}
+    \vspace{-1em}\newline
 		\noindent
 		\begin{tikzpicture}
 		\foreach [count=\i] \x/\y in {#1}
@@ -236,10 +240,10 @@
 {
   % grey bar on the left side
   \begin{tikzpicture}[remember picture,overlay]
-      \node [rectangle, fill=asidecolor, anchor=north, minimum width=9.90cm, minimum height=\paperheight+1cm] (box) at (-5cm,0.5cm){};
+      \node [rectangle, fill=asidecolor, anchor=north, minimum width=9.90cm, minimum height=\paperheight+5cm] (box) at (-5cm,2.5cm){};
   \end{tikzpicture}
 
-  \begin{textblock}{6}(0.5, 0.2)
+  \begin{textblock}{6}(0.7, 0.2)
     \begin{flushleft}
       \hspace{13pt}
 
@@ -250,7 +254,9 @@
       \end{tikzpicture}}
 
       % name
-      {\Huge\color{mainblue}\givencvname}
+      {\Huge\color{mainblue}\givencvname\\}
+      \vspace*{.3em}
+	    {\LARGE\color{mainblue}\givencvfirstname}
 
       % jobtitle
       \begin{flushright}
@@ -272,12 +278,12 @@
         \ifthenelse{\equal{\givencvmail}{}}{}{\textsc{\large\icon{@}} & \href{mailto:\givencvmail}{\givencvmail}}
       \end{tabular}
 
+      ~\\[0.5em]
       % about me text
-      \profilesection{About me}{3.2cm}
+      \profilesection{Mein Profil}{2.7cm}
       \givenaboutme
 
       % skills with scale
-      \profilesection{Skill}{5cm}
       \givenskill
       \giventextskill
       
@@ -405,7 +411,7 @@
 %%%%%%%%%%%%%%%%
 % Page Setting %
 %%%%%%%%%%%%%%%%
-\geometry{left=7.3cm,top=0.1cm,right=0.5cm,bottom=0.2cm,nohead,nofoot}
+\geometry{left=7.5cm,top=0.5cm,right=1.0cm,bottom=1.0cm,nohead,nofoot}
 
 \hypersetup{
 	colorlinks,
