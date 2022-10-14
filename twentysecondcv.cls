@@ -109,7 +109,7 @@
 \pgfmathsetlength{\imagewidth}{5cm}%
 \pgfmathsetlength{\imagescale}{\imagewidth/600}%
 
-\newcommand{\profilesection}[2]{{\noindent\color{black!80} \huge #1 \rule[0.15\baselineskip]{#2}{1pt} \vspace{1pt}}}
+\newcommand{\profilesection}[2]{{\noindent\color{black!80} \huge #1 \rule[0.15\baselineskip]{#2}{1pt} \vspace{-5pt}}}
 
 \newcommand{\cvdate}[1]{\renewcommand{\givencvdate}{#1}}                % date
 \newcommand{\cvmail}[1]{\renewcommand{\givencvmail}{#1}}                % mail
@@ -135,8 +135,7 @@
 
 % icon in blue circle; #1 -> icon
 \newcommand*\icon[1]{\tikz[baseline=(char.base)]{
-  \node[shape=circle,draw,inner sep=1pt, fill=mainblue,mainblue,text=white] (char) {#1};}
-}
+            \node[shape=circle,draw,minimum width=6.5mm, inner sep=1pt,outer sep=10pt, fill=mainblue,mainblue,text=white] (char) {#1};}}
 
 % Text in square node with rounded corners; #1 -> text, #2 -> color
 \newcommand*\round[2]{%
