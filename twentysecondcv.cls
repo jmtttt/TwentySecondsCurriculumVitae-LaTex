@@ -180,6 +180,11 @@
     }
     \end{flushleft}
   }
+  \noindent
+  \scriptsize
+  \noindent
+  (*)[The skill scale is from 0 (Fundamental Awareness) to 6 (Expert).]
+      
 }
 
 \newcommand{\giventextskill}{}
@@ -210,6 +215,20 @@
 }
 
 \newcommand{\givenlanguage}{}
+
+
+\newcommand\attachments[2]{ 
+	
+	\renewcommand{\givenattachments}{
+		\begin{flushright}
+		~\\
+			\href{#1}{Anlagen:~~~}
+			\href{#1}{\includegraphics[width=20mm, height=20mm]{#2}}
+		\end{flushright}
+	}
+}
+\newcommand{\givenattachments}{}
+
 
 
 
@@ -261,12 +280,10 @@
       \profilesection{Skill}{5cm}
       \givenskill
       \giventextskill
-      \noindent
-      \scriptsize
-      \noindent
-      (*)[The skill scale is from 0 (Fundamental Awareness) to 6 (Expert).]
       
       \givenlanguage
+
+      \givenattachments
 
     \end{flushleft}
   \end{textblock}
