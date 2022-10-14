@@ -119,9 +119,11 @@
 \newcommand{\aboutme}[1]{\renewcommand{\givenaboutme}{  \justifying#1}} % about me
 \newcommand{\profilepic}[1]{\renewcommand{\givenprofilepic}{#1}}        % picture
 \newcommand{\cvname}[1]{\renewcommand{\givencvname}{#1}}                % name
+\newcommand{\cvfirstname}[1]{\renewcommand{\givencvfirstname}{#1}}      % first name
 \newcommand{\cvjobtitle}[1]{\renewcommand{\givencvjobtitle}{#1}}        % job title
 
 \newcommand{\givencvname}{REQUIRED!} % name
+\newcommand{\givencvfirstname}{!!!!} % first name
 \newcommand{\givencvdate}{}          % date
 \newcommand{\givencvmail}{}          % mail
 \newcommand{\givennumberphone}{}     % phone
