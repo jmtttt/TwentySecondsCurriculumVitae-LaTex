@@ -267,7 +267,7 @@
       % table with icons 
       \begin{tabular}{c @{\hskip 0.2cm} p{5cm}}
         % CV date
-        \ifthenelse{\equal{\givencvdate}{}}{}{\textsc{\Large\icon{\Info}} & \givencvdate\\}
+        \ifthenelse{\equal{\givencvdate}{}}{}{\textsc{\icon{\faBirthdayCake}} & \givencvdate\\}
         % CV address
         \ifthenelse{\equal{\givencvaddress}{}}{}{\textsc{\Large\icon{\Letter}} & \givencvaddress\\}
         % CV phone
@@ -305,9 +305,9 @@
   % Switch between blue and gray
    \round{#1#2#3}{%
       \ifodd\value{colorCounter}%
-        mainblue%
-      \else%
         maingray%
+      \else%
+        maingray% mainblue
       \fi%
     }%
   }%
@@ -319,18 +319,19 @@
   {%
     \LARGE 
     \color{headercolor}%
-    \@sectioncolor #1%
+    #1 %\@sectioncolor #1%
   }
   \par\vspace{\parskip}
 }
 
 \newcommand{\sectionicon}[2]{
+  \vspace{3em}
   \par%
   {%
     \LARGE 
     #1 
     \color{headercolor}%
-    \@sectioncolor #2%
+    #2 %\@sectioncolor #2%
   }
   \par\vspace{\parskip}
 }
@@ -356,11 +357,12 @@
 }
 \renewcommand{\bfseries}{\color{headercolor}}
 \newcommand{\twentyitem}[4]{%
-  \hspace{5pt}#1&\parbox[t]{11.5cm}{%
+\parbox[t]{2.2cm}{%  
+\hspace{5pt}#1}&\parbox[t]{11.0cm}{%
     \textbf{#2}%
     \hfill%
-    {\footnotesize#3}\\%
-    #4\vspace{\parsep}%
+    {\footnotesize#3}\\[.2em]%
+    #4\vspace{1em}%
   }\\%
 }
 \setlength{\tabcolsep}{0pt}
