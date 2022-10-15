@@ -328,9 +328,11 @@
   \vspace{3em}
   \par%
   {%
-    \LARGE 
-    #1 
+  \parbox[t]{1.2cm}{%  
+    ~~~\LARGE 
+    #1} 
     \color{headercolor}%
+    \LARGE 
     #2 %\@sectioncolor #2%
   }
   \par\vspace{\parskip}
