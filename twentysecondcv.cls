@@ -148,6 +148,7 @@
 % skill bar graphs
 \newcommand\skills[1]{
   \renewcommand{\givenskill}{
+  	\givenCVspace
   	\ifthenelse{\equal{\chosenCVlang}{DE}}{
     	\profilesection{Softwarekenntnisse}{0.0cm}}{
         \profilesection{Software}{3.1cm}}
@@ -197,6 +198,7 @@
 % language skills
 \newcommand\languages[1]{ 
 	\renewcommand{\givenlanguage}{
+		\givenCVspace
 		\ifthenelse{\equal{\chosenCVlang}{DE}}{
 			\profilesection{Sprachen}{3.1cm}}{
 			\profilesection{Languages}{2.5cm}}
@@ -260,7 +262,10 @@
 }
 \newcommand{\givenCVlang}{}
 
-
+\newcommand\setCVspace[1]{ 
+	\renewcommand{\givenCVspace}{\vspace{#1}}
+}
+\newcommand{\givenCVspace}{\vspace{0px}}
 
 
 \newcommand{\makeprofile}
@@ -310,6 +315,7 @@
       \end{tabular}
 
       ~\\[0.5em]
+      \givenCVspace
       % about me text
       \ifthenelse{
       	\equal{\chosenCVlang}{DE}}{
