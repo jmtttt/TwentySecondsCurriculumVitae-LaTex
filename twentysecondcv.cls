@@ -110,7 +110,7 @@
 \pgfmathsetlength{\imagescale}{\imagewidth/600}%
 
 \newcommand{\profilesection}[2]{{\noindent\color{black!80} \huge #1
-\ifthenelse{\equal{#2}{0.0cm}}{\vspace{-.5em}}{\rule[0.15\baselineskip]{#2}{1pt}}}}
+\ifthenelse{\equal{#2}{0.0cm}}{\vspace{-.0em}}{\rule[0.15\baselineskip]{#2}{1pt}}}}
 
 \newcommand{\cvdate}[1]{\renewcommand{\givencvdate}{#1}}                % date
 \newcommand{\cvmail}[1]{\renewcommand{\givencvmail}{#1}}                % mail
@@ -152,7 +152,7 @@
   	\ifthenelse{\equal{\chosenCVlang}{DE}}{
     	\profilesection{Softwarekenntnisse}{0.0cm}}{
         \profilesection{Software}{3.1cm}}
-    \newline
+    \vspace{-.8em}\newline
     \noindent
     \begin{tikzpicture}
     \foreach [count=\i] \x/\y in {#1}
