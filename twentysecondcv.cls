@@ -36,7 +36,7 @@
 \RequirePackage{hyperref}
 
 \RequirePackage[utf8]{inputenc}
-\RequirePackage[ngerman]{babel}
+\RequirePackage[ngerman, english]{babel}
 \RequirePackage{graphicx}
 \RequirePackage{fontawesome}
 \RequirePackage{hyphenat}
@@ -110,7 +110,7 @@
 \pgfmathsetlength{\imagescale}{\imagewidth/600}%
 
 \newcommand{\profilesection}[2]{{\noindent\color{black!80} \huge #1
-\ifthenelse{\equal{#2}{0.0cm}}{}{\rule[0.15\baselineskip]{#2}{1pt}}}}
+\ifthenelse{\equal{#2}{0.0cm}}{\vspace{-.5em}}{\rule[0.15\baselineskip]{#2}{1pt}}}}
 
 \newcommand{\cvdate}[1]{\renewcommand{\givencvdate}{#1}}                % date
 \newcommand{\cvmail}[1]{\renewcommand{\givencvmail}{#1}}                % mail
@@ -148,8 +148,10 @@
 % skill bar graphs
 \newcommand\skills[1]{
   \renewcommand{\givenskill}{
-    \profilesection{Softwarekenntnisse}{0.0cm}
-    \vspace{-1em}\newline
+  	\ifthenelse{\equal{\chosenCVlang}{DE}}{
+    	\profilesection{Softwarekenntnisse}{0.0cm}}{
+        \profilesection{Software}{3.1cm}}
+    \newline
     \noindent
     \begin{tikzpicture}
     \foreach [count=\i] \x/\y in {#1}
@@ -195,7 +197,9 @@
 % language skills
 \newcommand\languages[1]{ 
 	\renewcommand{\givenlanguage}{
-		\profilesection{Sprachen}{3.1cm}
+		\ifthenelse{\equal{\chosenCVlang}{DE}}{
+			\profilesection{Sprachen}{3.1cm}}{
+			\profilesection{Languages}{2.5cm}}
     \vspace{-1em}\newline
 		\noindent
 		\begin{tikzpicture}
@@ -224,20 +228,46 @@
 \newcommand\attachments[2]{ 
 	
 	\renewcommand{\givenattachments}{
-		\begin{flushright}
-		~\\
-			\href{#1}{Anlagen:~~~}
-			\href{#1}{\includegraphics[width=20mm, height=20mm]{#2}}
-		\end{flushright}
+		\begin{tikzpicture}[remember picture,overlay, ultra thick]
+			\node[anchor=north west, inner sep=0pt, outer sep=0pt] at ($(current page.south west) + (7mm,27mm) $) {
+				\parbox[r]{6.1cm}{
+					\hfill
+					\ifthenelse{\equal{\chosenCVlang}{DE}}{
+						\href{#1}{Anlagen:~~~}}{
+		    			\href{#1}{Documents:~~~}}
+					\href{#1}{\includegraphics[width=20mm, height=20mm]{#2}}
+				}
+			};
+		\end{tikzpicture}%
 	}
 }
 \newcommand{\givenattachments}{}
 
 
 
+\newcommand\setCVlang[1]{ 
+	\renewcommand{\givenCVlang}{
+		\ifthenelse{
+		\equal{#1}{german}
+		}{ % german
+		\selectlanguage{ngerman}
+		\newcommand{\chosenCVlang}{DE}
+		}{ % english
+		\selectlanguage{english}
+		\newcommand{\chosenCVlang}{EN}
+		}
+	}
+}
+\newcommand{\givenCVlang}{}
+
+
+
 
 \newcommand{\makeprofile}
 {
+  % Language Management	
+  \givenCVlang
+	
   % grey bar on the left side
   \begin{tikzpicture}[remember picture,overlay]
       \node [rectangle, fill=asidecolor, anchor=north, minimum width=9.90cm, minimum height=\paperheight+5cm] (box) at (-5cm,2.5cm){};
@@ -265,11 +295,12 @@
       \renewcommand{\arraystretch}{1.6}
 
       % table with icons 
+      \ifthenelse{\equal{\givenprofilepic}{}}{\vspace{1.5em}}{}
       \begin{tabular}{c @{\hskip 0.2cm} p{5cm}}
-        % CV date
-        \ifthenelse{\equal{\givencvdate}{}}{}{\textsc{\icon{\faBirthdayCake}} & \givencvdate\\}
         % CV address
         \ifthenelse{\equal{\givencvaddress}{}}{}{\textsc{\Large\icon{\Letter}} & \givencvaddress\\}
+        % CV date
+        \ifthenelse{\equal{\givencvdate}{}}{}{\textsc{\icon{\faBirthdayCake}} & \givencvdate\\}
         % CV phone
         \ifthenelse{\equal{\givennumberphone}{}}{}{\textsc{\Large\icon{\Telefon}} & \givennumberphone\\}
         % CV site
@@ -280,7 +311,10 @@
 
       ~\\[0.5em]
       % about me text
-      \profilesection{Mein Profil}{2.7cm}
+      \ifthenelse{
+      	\equal{\chosenCVlang}{DE}}{
+      \profilesection{Mein Profil}{2.7cm}}{
+      \profilesection{About me}{2.8cm}}
       \givenaboutme
 
       % skills with scale
