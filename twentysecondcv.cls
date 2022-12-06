@@ -122,6 +122,7 @@
 \newcommand{\cvname}[1]{\renewcommand{\givencvname}{#1}}                % name
 \newcommand{\cvfirstname}[1]{\renewcommand{\givencvfirstname}{#1}}      % first name
 \newcommand{\cvjobtitle}[1]{\renewcommand{\givencvjobtitle}{#1}}        % job title
+\newcommand{\cvplace}[1]{\renewcommand{\givencvplace}{#1}}        % CV place
 
 \newcommand{\givencvname}{REQUIRED!} % name
 \newcommand{\givencvfirstname}{!!!!} % first name
@@ -133,6 +134,7 @@
 \newcommand{\givenprofilepic}{}      % picture
 \newcommand{\givencvsite}{}          % site
 \newcommand{\givencvjobtitle}{}      % job title
+\newcommand{\givencvplace}{}         % CV place
 
 % icon in blue circle; #1 -> icon
 \newcommand*\icon[1]{\tikz[baseline=(char.base)]{
@@ -247,20 +249,18 @@
 
 
 
-\newcommand\setCVlang[1]{ 
-	\renewcommand{\givenCVlang}{
-		\ifthenelse{
+\newcommand\cvlang[1]{ 
+    \ifthenelse{
 		\equal{#1}{german}
 		}{ % german
 		\selectlanguage{ngerman}
-		\newcommand{\chosenCVlang}{DE}
+		\renewcommand{\chosenCVlang}{DE}
 		}{ % english
 		\selectlanguage{english}
-		\newcommand{\chosenCVlang}{EN}
+		\renewcommand{\chosenCVlang}{EN}
 		}
-	}
 }
-\newcommand{\givenCVlang}{}
+\newcommand{\chosenCVlang}{WILL BE CHANGED}
 
 \newcommand\setCVspace[1]{ 
 	\renewcommand{\givenCVspace}{\vspace{#1}}
@@ -270,9 +270,6 @@
 
 \newcommand{\makeprofile}
 {
-  % Language Management	
-  \givenCVlang
-	
   % grey bar on the left side
   \begin{tikzpicture}[remember picture,overlay]
       \node [rectangle, fill=asidecolor, anchor=north, minimum width=9.90cm, minimum height=\paperheight+5cm] (box) at (-5cm,2.5cm){};
