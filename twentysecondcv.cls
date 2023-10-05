@@ -138,7 +138,7 @@
 
 % icon in blue circle; #1 -> icon
 \newcommand*\icon[1]{\tikz[baseline=(char.base)]{
-            \node[shape=circle,draw,minimum width=6.5mm, inner sep=1pt,outer sep=10pt, fill=mainblue,mainblue,text=white] (char) {#1};}}
+            \node[shape=circle,draw,minimum width=7mm, inner sep=1pt,outer sep=10pt, fill=mainblue,mainblue,text=white] (char) {#1};}}
 
 % Text in square node with rounded corners; #1 -> text, #2 -> color
 \newcommand*\round[2]{%
@@ -161,7 +161,7 @@
     {
       \draw[fill=maingray,maingray] (0,-\i) rectangle (6,-\i+0.4);
       \draw[fill=white,mainblue](0,-\i) rectangle (1.2*\y,-\i+0.4);
-      \node [above right ] at (0,-\i+0.4) {\x};
+      \node [above right ] at (0,-\i+0.34) {\color{darkgray}\x};
       \foreach \z in {1,2,...,9}
       {
         \coordinate (A\z) at ($(0,-\i)+(1.2*\z*0.5cm,0)$) {};
@@ -311,7 +311,7 @@
         \ifthenelse{\equal{\givencvmail}{}}{}{\textsc{\large\icon{@}} & \href{mailto:\givencvmail}{\givencvmail}}
       \end{tabular}
 
-      ~\\[0.5em]
+      ~\\[1.0em]
       \givenCVspace
       % about me text
       \ifthenelse{
@@ -362,7 +362,7 @@
 }
 
 \newcommand{\sectionicon}[2]{
-  \vspace{3em}
+  \vspace{1.5em}
   \par%
   {%
   \parbox[t]{1.2cm}{%  
@@ -396,11 +396,11 @@
 }
 \renewcommand{\bfseries}{\color{headercolor}}
 \newcommand{\twentyitem}[4]{%
-\parbox[t]{2.2cm}{%  
-\hspace{5pt}#1}&\parbox[t]{11.0cm}{%
+\parbox[t]{2.4cm}{%  
+\hspace{5pt}#1}&\parbox[t]{10.8cm}{%
     \textbf{#2}%
     \hfill%
-    {\footnotesize#3}\\[.2em]%
+    {\footnotesize#3}\\[+.1em]%
     #4\vspace{1em}%
   }\\%
 }
@@ -441,7 +441,7 @@
 }{%
   \end{tabular*}
 }
-\renewcommand{\bfseries}{\color{headercolor}}
+\renewcommand{\bfseries}{\color{darkgray}}
 \newcommand{\twentyitemshorticon}[3]{%
   \hspace{3pt}\faicon{#1}\hspace{3pt}#2&
       \parbox[t]{11.5cm}{%
