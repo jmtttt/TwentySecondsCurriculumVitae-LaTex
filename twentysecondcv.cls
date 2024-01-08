@@ -298,17 +298,22 @@
 
       % table with icons 
       \ifthenelse{\equal{\givenprofilepic}{}}{\vspace{1.5em}}{}
-      \begin{tabular}{c @{\hskip 0.2cm} p{5cm}}
+      \begin{tabular}{l @{\hskip 0.2cm} p{5cm}}
         % CV address
         \ifthenelse{\equal{\givencvaddress}{}}{}{\textsc{\Large\icon{\Letter}} & \givencvaddress\\}
+        ~ & ~ \\[-1.9em]
         % CV date
         \ifthenelse{\equal{\givencvdate}{}}{}{\textsc{\icon{\faBirthdayCake}} & \givencvdate\\}
+        ~ & ~ \\[-1.9em]
         % CV phone
         \ifthenelse{\equal{\givennumberphone}{}}{}{\textsc{\Large\icon{\Telefon}} & \givennumberphone\\}
+        ~ & ~ \\[-1.9em]
         % CV site
         \ifthenelse{\equal{\givencvsite}{}}{}{\textsc{\Large\icon{\Mundus}} & \href{\givencvsite}{\textcolor{cerulean}\givencvsite}\\}
+        ~ & ~ \\[-1.9em]
         % CV mail
-        \ifthenelse{\equal{\givencvmail}{}}{}{\textsc{\large\icon{@}} & \href{mailto:\givencvmail}{\givencvmail}}
+        \ifthenelse{\equal{\givencvmail}{}}{}{\textsc{\large\icon{@}} & \href{mailto:\givencvmail}{\givencvmail}\\}
+        ~ & ~ \\[-1.9em]
       \end{tabular}
 
       ~\\[1.0em]
